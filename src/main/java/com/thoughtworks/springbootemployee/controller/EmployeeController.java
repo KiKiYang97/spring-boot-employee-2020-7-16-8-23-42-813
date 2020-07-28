@@ -38,4 +38,17 @@ public class EmployeeController {
         oldEmployee.setGender(newEmployee.getGender());
         return oldEmployee;
     }
+
+    @DeleteMapping("/{id}")
+    public List<Employee> deleteEmployee(@PathVariable int id){
+        List<Employee> employees = new ArrayList<>();
+        employees.add(new Employee(0, "alibaba3", 19, "male"));
+        employees.add(new Employee(1, "Kiki", 18, "female"));
+        employees.add(new Employee(2, "Eason", 25, "male"));
+        employees.stream()
+                .filter(employee -> employee.getId() == id)
+                .findFirst()
+                .ifPresent(employees::remove);
+        return employees;
+    }
 }
