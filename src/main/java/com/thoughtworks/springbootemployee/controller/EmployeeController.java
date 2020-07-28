@@ -29,4 +29,13 @@ public class EmployeeController {
         return new Employee(employee.getId(), employee.getName(), employee.getAge(),
                 employee.getGender());
     }
+
+    @PutMapping("/{id}")
+    public Employee updateEmployee(@PathVariable int id,@RequestBody Employee newEmployee){
+        Employee oldEmployee = new Employee(id);
+        oldEmployee.setName(newEmployee.getName());
+        oldEmployee.setAge(newEmployee.getAge());
+        oldEmployee.setGender(newEmployee.getGender());
+        return oldEmployee;
+    }
 }
